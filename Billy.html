@@ -1,88 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Billy Ryan Kibet | Portfolio</title>
-  <style>
-    :root {
-      --bg: #121212;
-      --surface: #1e1e1e;
-      --accent: #ffcc00;
-      --text: #ffffff;
-    }
-    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); padding: 40px; margin: 0; }
-    .container { max-width: 900px; margin: auto; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Field Record — Billy Ryan Kibet</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cormorant+Upright:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FDFBF7;
+    --paper-shadow:#F3EFE5;
+    --band:#E9EFE7;
+    --ink:#5C5044;
+    --ink-soft:#786B5D;
+    --green:#8FA994;
+    --green-deep:#7D9987;
+    --plum:#C79BB0;
+    --stone:#A79C8C;
+    --line:#E6DFD2;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Cormorant Garamond', Georgia, serif;
+    background:#DCD6C8;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,255,255,0.35), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(0,0,0,0.04), transparent 45%);
+    padding:40px 16px;
+    color:var(--ink);
+  }
+  .page{
+    max-width:800px;
+    margin:0 auto;
+    background:var(--paper);
+    box-shadow:0 18px 50px rgba(120,107,93,0.18), 0 2px 0 rgba(0,0,0,0.03);
+    position:relative;
+  }
 
-    /* SECTION 1: PERSONAL DETAILS */
-    .persona-section { 
-      display: flex; align-items: center; gap: 40px; 
-      background: var(--surface); padding: 40px; border-radius: 24px;
-      margin-bottom: 30px; border: 1px solid #333;
-    }
-    .profile-img { 
-      width: 180px; height: 180px; border-radius: 20px; 
-      object-fit: cover; border: 4px solid var(--accent);
-    }
-    .details h1 { font-size: 40px; margin: 0; }
-    .details p { color: var(--accent); font-size: 18px; margin: 5px 0 15px; }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 14px; color: #ccc; }
+  /* Header */
+  .header-band{
+    background:var(--band);
+    padding:12px 52px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:var(--ink-soft);
+    border-bottom:1px solid var(--line);
+  }
+  .hb-text,.hb-link{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:inherit;text-decoration:none;}
+  .hb-link{transition:color .2s ease;border-bottom:1px solid transparent;}
+  .hb-link:hover{color:var(--green-deep);border-color:var(--green);}
 
-    /* SECTION 2: TECH STACK & EXPERTISE */
-    .expertise-section { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .card { background: var(--surface); padding: 25px; border-radius: 20px; border: 1px solid #333; }
-    .card h3 { color: var(--accent); margin-top: 0; }
-    .tech-pill { 
-      display: inline-block; background: #333; padding: 6px 14px; 
-      border-radius: 8px; font-size: 12px; margin: 4px; border: 1px solid #444;
-    }
-  </style>
+  /* Hero */
+  .hero{
+    padding:56px 60px 44px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:36px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    align-items:start;
+  }
+  .eyebrow{
+    font-family:'DM Mono',monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--plum);
+    display:block;
+    margin-bottom:14px;
+  }
+  .hero-name{
+    font-family:'Cormorant Upright',serif;
+    font-size:58px;
+    font-weight:300;
+    line-height:1.02;
+    color:var(--ink);
+  }
+  .hero-tagline{
+    margin-top:14px;
+    font-size:18px;
+    font-style:italic;
+    font-weight:400;
+    color:var(--ink-soft);
+    max-width:34ch;
+  }
+  .hero-field-note{
+    margin-top:22px;
+    font-family:'DM Mono',monospace;
+    font-size:11px;
+    color:var(--stone);
+    line-height:1.7;
+  }
+  .photo-mount{
+    width:130px;
+    height:155px;
+    background:
+      linear-gradient(135deg, #F3EFE5 0%, #EDE6D8 100%);
+    border:1px solid var(--line);
+    box-shadow:inset 0 0 0 5px var(--paper), inset 0 0 0 6px var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .photo-mount .monogram{
+    font-family:'Cormorant Upright',serif;
+    font-size:44px;
+    font-weight:300;
+    color:var(--green);
+    opacity:.85;
+  }
+  .photo-mount .corner-mark{
+    position:absolute;
+    font-family:'DM Mono',monospace;
+    font-size:8px;
+    color:var(--stone);
+    bottom:6px;
+    right:8px;
+    letter-spacing:.05em;
+  }
+
+  /* Content */
+  .content{padding:8px 60px 8px;}
+  .specimen{
+    padding:32px 0;
+    border-bottom:1px solid var(--line);
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:28px;
+  }
+  .specimen:last-child{border-bottom:none;}
+  .spec-sidebar{display:flex;flex-direction:column;gap:6px;}
+  .spec-number{
+    font-family:'DM Mono',monospace;
+    font-size:10px;
+    color:var(--plum);
+    letter-spacing:.05em;
+  }
+  .spec-latin{
+    font-style:italic;
+    font-size:13px;
+    color:var(--stone);
+    line-height:1.4;
+  }
+  .spec-heading{
+    font-size:25px;
+    font-weight:600;
+    margin-bottom:12px;
+    color:var(--ink);
+  }
+  .spec-answer{
+    font-size:17px;
+    font-weight:300;
+    line-height:1.8;
+    color:var(--ink-soft);
+  }
+  .spec-answer strong{font-weight:600;color:var(--ink);}
+
+  .materia-row{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    padding:9px 0;
+    border-bottom:1px dashed var(--line);
+    align-items:baseline;
+  }
+  .materia-row:last-child{border-bottom:none;}
+  .mat-label{
+    font-family:'DM Mono',monospace;
+    font-size:10px;
+    color:var(--green);
+    text-transform:uppercase;
+    letter-spacing:.05em;
+  }
+  .mat-value{font-size:16px;color:var(--ink-soft);}
+
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+  .chip{
+    font-family:'DM Mono',monospace;
+    font-size:10.5px;
+    color:var(--green-deep);
+    background:var(--band);
+    border:1px solid var(--line);
+    padding:4px 10px;
+    letter-spacing:.02em;
+  }
+
+  /* Current specimen highlight */
+  .field-highlight{
+    margin:6px 0 0;
+    padding:22px 24px;
+    background:var(--paper-shadow);
+    border-left:3px solid var(--plum);
+  }
+  .field-highlight .fh-label{
+    font-family:'DM Mono',monospace;
+    font-size:10px;
+    color:var(--plum);
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    display:block;
+    margin-bottom:8px;
+  }
+  .field-highlight p{font-size:16px;line-height:1.75;color:var(--ink-soft);font-weight:300;}
+
+  /* Signature illustration divider */
+  .signature-divider{
+    padding:36px 60px 44px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .signature-divider svg{width:100%;max-width:520px;height:auto;}
+
+  /* Footer */
+  .footer{
+    background:var(--band);
+    padding:18px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:var(--ink-soft);
+    font-family:'DM Mono',monospace;
+    font-size:10px;
+    letter-spacing:.04em;
+    border-top:1px solid var(--line);
+  }
+  .footer a{color:var(--green-deep);text-decoration:none;border-bottom:1px solid var(--line);transition:color .2s ease;}
+  .footer a:hover{color:var(--plum);}
+
+  @media (max-width:640px){
+    body{padding:20px 8px;}
+    .header-band{padding:10px 24px;}
+    .hero{padding:40px 24px 32px;grid-template-columns:1fr;gap:24px;}
+    .hero-name{font-size:44px;}
+    .photo-mount{width:100px;height:120px;}
+    .content{padding:8px 24px;}
+    .specimen{grid-template-columns:1fr;gap:12px;}
+    .spec-sidebar{flex-direction:row;align-items:baseline;gap:10px;}
+    .materia-row{grid-template-columns:100px 1fr;}
+    .signature-divider{padding:24px 24px 32px;}
+    .footer{padding:14px 24px;flex-direction:column;gap:6px;text-align:center;}
+  }
+</style>
 </head>
 <body>
+<article class="page">
 
-<div class="container">
+  <div class="header-band">
+    <span class="hb-text">Field Record · 2026</span>
+    <a href="#" class="hb-link">LinkedIn ↗</a>
+  </div>
 
-  <section class="persona-section">
-    <img src="my-photo.jpg" alt="Billy Ryan Kibet" class="profile-img">
-    <div class="details">
-      <h1>Billy Ryan Kibet</h1>
-      <p>Software Engineer</p>
-      <div class="contact-grid">
-        <span>📧 ryankibet15@gmail.com</span>
-        <span>📞 +254 797 628 432</span>
-        <span>🔗 linkedin.com/in/billykibet</span>
-        <span>📍 Nairobi, Kenya</span>
+  <div class="hero">
+    <div class="hero-text">
+      <span class="eyebrow">Specimen — Homo technologicus</span>
+      <h1 class="hero-name">Billy Ryan<br>Kibet</h1>
+      <p class="hero-tagline">Studying computer science by day, coaxing sensor data into predictions by night.</p>
+      <p class="hero-field-note">
+        Collected — Strathmore University, Nairobi County<br>
+        Habitat — machine learning, IoT &amp; embedded systems, distributed systems
+      </p>
+    </div>
+    <div class="photo-mount">
+      <span class="monogram">BK</span>
+      <span class="corner-mark">fig. 1</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="specimen">
+      <div class="spec-sidebar">
+        <span class="spec-number">Sp. 01</span>
+        <span class="spec-latin">Praedictio pluvialis</span>
+      </div>
+      <div class="spec-body">
+        <h2 class="spec-heading">What I'm Building</h2>
+        <p class="spec-answer">My current focus is a <strong>real-time flash-flood probability model for Nairobi County</strong> — an XGBoost pipeline trained on IoT sensor readings and meteorological data, built to give early warning ahead of urban flooding. Outside of that I build small, practical tools: a local app that pulls Spotify playlists down as MP3s, taught to behave itself on Windows.</p>
+        <div class="field-highlight">
+          <span class="fh-label">Current specimen in progress</span>
+          <p>Real-Time Urban Flash Flood Probability Prediction in Nairobi Using XGBoost — capstone project, from literature review through deployment architecture.</p>
+        </div>
       </div>
     </div>
-  </section>
 
-  <section class="expertise-section">
-    <div class="card">
-      <h3>The Vision</h3>
-      <p>I build intelligent digital systems at the intersection of robust networking and innovative software.</p>
+    <div class="specimen">
+      <div class="spec-sidebar">
+        <span class="spec-number">Sp. 02</span>
+        <span class="spec-latin">Instrumenta digitalia</span>
+      </div>
+      <div class="spec-body">
+        <h2 class="spec-heading">Tools of the Trade</h2>
+        <div class="materia-row"><span class="mat-label">Languages</span><span class="mat-value">Python, C++, Kotlin, SQL</span></div>
+        <div class="materia-row"><span class="mat-label">ML / Data</span><span class="mat-value">XGBoost, TensorFlow / Keras, scikit-learn</span></div>
+        <div class="materia-row"><span class="mat-label">Infra</span><span class="mat-value">AWS, PostgreSQL / PostGIS, Flask, FastAPI</span></div>
+        <div class="materia-row"><span class="mat-label">Hardware</span><span class="mat-value">ESP32, IoT sensor networks</span></div>
+      </div>
     </div>
-    <div class="card">
-      <h3>Software Development</h3>
-      <div class="tech-pill">Kotlin</div>
-      <div class="tech-pill">Android Studio</div>
-      <div class="tech-pill">Firebase</div>
-      <div class="tech-pill">React</div>
-      <div class="tech-pill">OpenAI API</div>
-    </div>
-    <div class="card">
-      <h3>Network Engineering</h3>
-      <div class="tech-pill">Cisco Packet Tracer</div>
-      <div class="tech-pill">Security</div>
-      <div class="tech-pill">Infrastructure</div>
-      <div class="tech-pill">Routing</div>
-    </div>
-    <div class="card">
-      <h3>Continuous Learner</h3>
-      <p>Always exploring new techniques to enhance my technical craft and deliver future-ready solutions.</p>
-    </div>
-  </section>
 
-</div>
+    <div class="specimen">
+      <div class="spec-sidebar">
+        <span class="spec-number">Sp. 03</span>
+        <span class="spec-latin">Interesses varii</span>
+      </div>
+      <div class="spec-body">
+        <h2 class="spec-heading">Off the Clock</h2>
+        <p class="spec-answer">I follow financial markets through the ICT trading framework, and I like environmental problems that IoT is well-suited to — anything where a sensor in the real world can feed a model that actually helps someone.</p>
+        <div class="chip-row">
+          <span class="chip">Market structure</span>
+          <span class="chip">Environmental sensing</span>
+          <span class="chip">Distributed systems</span>
+          <span class="chip">Applied ML</span>
+        </div>
+      </div>
+    </div>
 
+  </div>
+
+  <div class="signature-divider">
+    <svg viewBox="0 0 520 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- river/contour line merging into a botanical branch, representing flood data becoming a living model -->
+      <path d="M10 90 C 90 90, 90 40, 160 40 C 220 40, 220 70, 270 70" stroke="#A79C8C" stroke-width="1" opacity="0.5"/>
+      <path d="M10 100 C 90 100, 90 55, 160 55 C 220 55, 220 85, 270 85" stroke="#A79C8C" stroke-width="1" opacity="0.35"/>
+      <path d="M270 70 C 320 70, 330 30, 390 30 C 430 30, 440 15, 500 15" stroke="#8FA994" stroke-width="1.4"/>
+      <circle cx="270" cy="70" r="3" fill="#C79BB0"/>
+      <circle cx="330" cy="42" r="2" fill="#8FA994"/>
+      <path d="M330 42 C 340 30, 350 25, 360 15" stroke="#8FA994" stroke-width="1"/>
+      <ellipse cx="362" cy="12" rx="7" ry="3.5" fill="#8FA994" opacity="0.8" transform="rotate(-30 362 12)"/>
+      <circle cx="390" cy="30" r="2" fill="#8FA994"/>
+      <path d="M390 30 C 398 20, 405 18, 412 10" stroke="#8FA994" stroke-width="1"/>
+      <ellipse cx="414" cy="8" rx="6" ry="3" fill="#8FA994" opacity="0.7" transform="rotate(-25 414 8)"/>
+      <circle cx="440" cy="15" r="2" fill="#8FA994"/>
+      <path d="M440 15 C 448 6, 456 4, 465 -2" stroke="#8FA994" stroke-width="1" transform="translate(0,10)"/>
+      <ellipse cx="466" cy="10" rx="6" ry="3" fill="#8FA994" opacity="0.65" transform="rotate(-20 466 10)"/>
+    </svg>
+  </div>
+
+  <footer class="footer">
+    <span>Field Record · Herbarium Portfolio · 2026</span>
+    <span>Nairobi, Kenya &nbsp;·&nbsp; <a href="#">Get in touch ↗</a></span>
+  </footer>
+
+</article>
 </body>
 </html>
