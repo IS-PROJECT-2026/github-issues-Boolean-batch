@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me — Emmanuel Mukira</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+      <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #64748b;
+      --bg: #ffffff;
+      --card: #f8fafc;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Barlow, system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+    }
+    .hero-inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 50px;
+      align-items: center;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+    .hero-identity {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .hero-number {
+      font-family: Bebas Neue, sans-serif;
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: rgba(255,255,255,0.8);
+      text-transform: uppercase;
+    }
+    .hero-name {
+      font-family: Bebas Neue, sans-serif;
+      font-size: clamp(48px, 10vw, 72px);
+      color: var(--bg);
+      line-height: 1.1;
+      letter-spacing: 2px;
+    }
+    .hero-role {
+      font-family: Barlow Condensed, sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.9);
+      margin-top: 8px;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+    .hero-tag {
+      font-family: Barlow Condensed, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--primary-dark);
+      background: var(--bg);
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+    .hero-tag.outline {
+      background: transparent;
+      color: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .hero-photo {
+      display: flex;
+      justify-content: center;
+    }
+    .hero-photo img {
+      width: 320px;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 6px solid rgba(255,255,255,.15);
+      box-shadow: 0 20px 40px rgba(0,0,0,.25);
+    }
+    .nav-strip {
+      background: var(--card);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      height: 60px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-programme {
+      font-family: Bebas Neue, sans-serif;
+      font-size: 16px;
+      letter-spacing: 2px;
+      color: var(--primary);
+    }
+    .nav-links { display: flex; gap: 20px; align-items: center; }
+    .nav-link {
+      font-family: Barlow Condensed, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+    .nav-link:hover {
+      color: var(--primary);
+      background: var(--card);
+    }
+    .body-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    .section {
+      background: var(--card);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .section:last-child { margin-bottom: 0; }
+    .sec-left {
+      background: var(--primary);
+      color: var(--bg);
+      padding: 24px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+    }
+    .sec-num {
+      font-family: Bebas Neue, sans-serif;
+      font-size: 40px;
+      color: var(--bg);
+      line-height: 1;
+      letter-spacing: 1px;
+      opacity: 0.9;
+    }
+    .sec-label {
+      font-family: Barlow Condensed, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+    }
+    .sec-right {
+      padding: 40px 32px;
+    }
+    .sec-heading {
+      font-family: Bebas Neue, sans-serif;
+      font-size: 32px;
+      color: var(--primary);
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .sec-prompt {
+      font-family: Barlow Condensed, sans-serif;
+      font-size: 14px;
+      color: var(--secondary);
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+    .sec-answer {
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.8;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+    .stat-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+    .stat-status {
+      font-family: Barlow Condensed, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .stat-status.known { color: var(--success); }
+    .stat-status.learning { color: var(--secondary); }
+    .stat-name {
+      font-family: Barlow Condensed, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .stat-name.placeholder {
+      color: var(--secondary);
+      font-style: italic;
+      font-weight: 500;
+    }
+    .skills-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .skill-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px;
+      background: var(--bg);
+      border-radius: 10px;
+      border-left: 4px solid var(--primary);
+    }
+    .skill-num {
+      font-family: Bebas Neue, sans-serif;
+      font-size: 28px;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .skill-text {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .footer {
+      background: var(--card);
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-top: 1px solid var(--border);
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .footer-copy {
+      font-family: Barlow Condensed, sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+    .footer-back {
+      font-family: Barlow Condensed, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--primary);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+    .footer-back:hover {
+      background: var(--primary);
+      color: var(--bg);
+    }
+    @media (max-width: 768px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 60px 20px;
+      }
+      .hero-photo {
+        order: -1;
+        margin-bottom: 30px;
+      }
+      .hero-photo img {
+        width: 220px;
+        height: 220px;
+      }
+      .hero-tag { font-size: 11px; padding: 4px 12px; }
+      .nav-strip { padding: 0 16px; height: 50px; }
+      .nav-programme { font-size: 14px; }
+      .body-wrap { padding: 30px 16px; }
+      .sec-left { padding: 20px 24px; }
+      .sec-right { padding: 24px; }
+      .sec-heading { font-size: 24px; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer { padding: 16px 20px; justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .stat-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+
+  <!-- ── HERO ──────────────────────────────────────────────────────────────── -->
+  <header class="hero">
+    <div class="hero-inner">
+
+      <div class="hero-identity">
+        <p class="hero-number">ICS 4 · CAPSTONE 2026</p>
+        <h1 class="hero-name">Emmanuel Mukira</h1>
+        <p class="hero-role">Full Stack Software Developer | Machine Learning | DevSecOps</p>
+        <div class="hero-tags">
+          <span class="hero-tag">Nairobi, Kenya</span>
+          <span class="hero-tag">BSc Computer Science</span>
+          <span class="hero-tag outline">AI &amp; Systems Engineering</span>
+          <span class="hero-tag outline">Class of 2026</span>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="../images/emmanuel-pic.jpeg" alt="Emmanuel Mukira">
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ── NAV STRIP ─────────────────────────────────────────────────────────── -->
+  <nav class="nav-strip">
+    <span class="nav-programme">Strathmore University</span>
+    <div class="nav-links">
+      <a href="https://www.linkedin.com/in/emmanuel-mukira-809658273/" target="_blank" rel="noopener" class="nav-link">LinkedIn ↗</a>
+      <a href="https://github.com/emmanuel-mukira" target="_blank" rel="noopener" class="nav-link">GitHub ↗</a>
+    </div>
+  </nav>
+
+  <!-- ── SECTIONS ──────────────────────────────────────────────────────────── -->
+  <main class="body-wrap">
+
+    <!-- Mission -->
+    <div class="section">
+      <div class="sec-left">
+        <span class="sec-num">01</span>
+        <span class="sec-label">Mission</span>
+      </div>
+      <div class="sec-right">
+        <h2 class="sec-heading">My Coding Mission</h2>
+        <p class="sec-prompt">What kind of real-world problems do you want to solve using technology? Write 2–3 sentences.</p>
+        <p class="sec-answer">
+          I enjoy building software that solves practical problems through thoughtful engineering rather than unnecessary complexity. My interests span full stack development, machine learning, backend architecture, DevSecOps, IoT systems and cloud infrastructure, with a strong focus on creating secure, scalable and intelligent applications that have real-world impact.
+        </p>
+      </div>
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="section">
+      <div class="sec-left">
+        <span class="sec-num">02</span>
+        <span class="sec-label">Stack</span>
+      </div>
+      <div class="sec-right">
+        <h2 class="sec-heading">My Tech Stack</h2>
+        <p class="sec-prompt">What tools do you know now? What two technologies do you want to learn next?</p>
+        <div class="stat-grid">
+          <div class="stat-card">
+            <span class="stat-status known">● Proficient</span>
+            <span class="stat-name">Java</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-status known">● Proficient</span>
+            <span class="stat-name">JavaScript / TypeScript</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-status known">● Proficient</span>
+            <span class="stat-name">React &amp; Node.js</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-status known">● Proficient</span>
+            <span class="stat-name">Python</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-status known">● Proficient</span>
+            <span class="stat-name">Spring Boot</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-status known">● Proficient</span>
+            <span class="stat-name">PostgreSQL &amp; MongoDB</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-status learning">▲ Learning</span>
+            <span class="stat-name">AWS</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-status learning">▲ Learning</span>
+            <span class="stat-name">Microsoft Azure</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-status learning">▲ Learning</span>
+            <span class="stat-name">DevSecOps</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-status learning">▲ Learning</span>
+            <span class="stat-name">Kubernetes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Passions -->
+    <div class="section">
+      <div class="sec-left">
+        <span class="sec-num">03</span>
+        <span class="sec-label">Beyond Code</span>
+      </div>
+      <div class="sec-right">
+        <h2 class="sec-heading">My Passions</h2>
+        <p class="sec-prompt">What do you love doing when you are not looking at a computer screen?</p>
+        <p class="sec-answer">
+          Beyond software development, I enjoy mentoring fellow students, contributing to youth leadership initiatives and exploring emerging technologies. I am also interested in entrepreneurship and enjoy turning ideas into practical digital products that create value for businesses and communities.
+        </p>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="section">
+      <div class="sec-left">
+        <span class="sec-num">04</span>
+        <span class="sec-label">Growth</span>
+      </div>
+      <div class="sec-right">
+        <h2 class="sec-heading">Skills Acquired</h2>
+        <p class="sec-prompt">The three most valuable life or professional skills from your degree.</p>
+        <ul class="skills-list">
+          <li class="skill-item">
+            <span class="skill-num">01</span>
+            <span class="skill-text">
+              Designing scalable systems by breaking complex software problems into maintainable components with clean architecture.
+            </span>
+          </li>
+          <li class="skill-item">
+            <span class="skill-num">02</span>
+            <span class="skill-text">
+              Collaborating effectively within multidisciplinary teams while balancing technical requirements, user experience and project goals.
+            </span>
+          </li>
+          <li class="skill-item">
+            <span class="skill-num">03</span>
+            <span class="skill-text">
+              Learning new technologies quickly and applying them to real-world projects across AI, cloud computing, cybersecurity and IoT.
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Energy -->
+    <div class="section">
+      <div class="sec-left">
+        <span class="sec-num">05</span>
+        <span class="sec-label">Energy</span>
+      </div>
+      <div class="sec-right">
+        <h2 class="sec-heading">Energy &amp; Engagement</h2>
+        <p class="sec-prompt">Which classes or projects brought you the most energy, and why?</p>
+        <p class="sec-answer">
+          The projects that have energized me the most are those where I could build complete systems from the ground up. Developing AI-powered applications, backend services, CRM systems and IoT solutions allowed me to combine software engineering, cloud technologies, security and machine learning into solutions with practical value.
+        </p>
+      </div>
+    </div>
+
+    <!-- Looking Back -->
+    <div class="section">
+      <div class="sec-left">
+        <span class="sec-num">06</span>
+        <span class="sec-label">Reflection</span>
+      </div>
+      <div class="sec-right">
+        <h2 class="sec-heading">Looking Back</h2>
+        <p class="sec-prompt">If you were to give advice to your first-year self, what would it be?</p>
+        <p class="sec-answer">
+          I would tell my first-year self to build more projects earlier, contribute to open source sooner and focus less on chasing technologies and more on mastering engineering fundamentals. Strong fundamentals make learning any new framework significantly easier.
+        </p>
+      </div>
+    </div>
+
+    <!-- Circle of Influence -->
+    <div class="section">
+      <div class="sec-left">
+        <span class="sec-num">07</span>
+        <span class="sec-label">Gratitude</span>
+      </div>
+      <div class="sec-right">
+        <h2 class="sec-heading">Circle of Influence</h2>
+        <p class="sec-prompt">Who are the mentors, peers, or lecturers who have poured into you?</p>
+        <p class="sec-answer">
+          I am grateful to my lecturers, classmates and mentors at Strathmore University for continually challenging me to think critically and grow as an engineer. Their guidance, collaboration and encouragement have shaped both my technical skills and professional mindset.
+        </p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <span class="footer-copy">ICS 4 Capstone · Strathmore University · Nairobi · 2026</span>
+    <a href="../index.html" class="footer-back">← Back to company page</a>
+  </footer>
+
+</body>
+</html>
