@@ -19,17 +19,25 @@
         padding: 0;
       }
       :root {
-        --black: #0e0e0e;
-        --dark: #161616;
-        --mid: #232323;
-        --edge: #2e2e2e;
-        /* --orange: #ff4d00;  #ff4d00 */
-        --orange: #43e4e7;
-        --orange2: #ff7033;
-        --fg: #f0ede8;
-        --fg2: #a09890;
-        --fg3: #5a5450;
+        /* Core palette */
+        --black: #050506;
+        --dark: #0f1416;
+        --mid: #1e2225;
+        --edge: #2a2f33;
+
+        /* Primary accent (warm coral) and secondary (teal) */
+        --accent: #ff6b35;
+        --accent-2: #1fb6a8;
+
+        /* Text / neutral */
+        --fg: #f6f5f2;
+        --fg-quiet: #cfc9c4;
+        --muted: #8f8782;
         --white: #ffffff;
+
+        /* Surface */
+        --card: #121417;
+        --panel: #0b0d0e;
       }
       html {
         scroll-behavior: smooth;
@@ -44,7 +52,7 @@
 
       /* ── HERO — full-bleed dark panel ──────────────────────────────────────── */
       .hero {
-        background: var(--black);
+        background: linear-gradient(180deg, var(--dark), #07090a 60%);
         position: relative;
         overflow: hidden;
         padding: 0;
@@ -55,11 +63,12 @@
         position: absolute;
         top: 0;
         right: 0;
-        width: 45%;
+        width: 44%;
         height: 100%;
-        background: var(--orange);
-        clip-path: polygon(18% 0%, 100% 0%, 100% 100%, 0% 100%);
+        background: linear-gradient(135deg, var(--accent-2), var(--accent));
+        clip-path: polygon(16% 0%, 100% 0%, 100% 100%, 0% 100%);
         z-index: 0;
+        opacity: 0.96;
       }
 
       /* Noise texture on slash */
@@ -100,27 +109,29 @@
         font-family: "Bebas Neue", sans-serif;
         font-size: 13px;
         letter-spacing: 5px;
-        color: var(--orange);
-        margin-bottom: 4px;
+        color: var(--accent-2);
+        margin-bottom: 6px;
+        opacity: 0.95;
       }
 
       .hero-name {
         font-family: "Bebas Neue", sans-serif;
-        font-size: clamp(60px, 9vw, 100px);
-        color: var(--white);
-        line-height: 0.88;
-        letter-spacing: 2px;
-        margin-bottom: 16px;
+        font-size: clamp(56px, 8.5vw, 96px);
+        color: var(--fg);
+        line-height: 0.92;
+        letter-spacing: 1.6px;
+        margin-bottom: 14px;
+        text-shadow: 0 6px 18px rgba(0,0,0,0.6);
       }
 
       .hero-role {
         font-family: "Barlow Condensed", sans-serif;
-        font-size: 20px;
-        font-weight: 300;
+        font-size: 18px;
+        font-weight: 400;
         letter-spacing: 3px;
         text-transform: uppercase;
-        color: var(--fg2);
-        margin-bottom: 24px;
+        color: var(--fg-quiet);
+        margin-bottom: 20px;
       }
 
       .hero-tags {
@@ -135,15 +146,16 @@
         font-weight: 600;
         letter-spacing: 1.5px;
         text-transform: uppercase;
-        color: var(--black);
+        color: var(--panel);
         background: var(--fg);
-        padding: 5px 14px;
+        padding: 6px 14px;
+        border-radius: 18px;
       }
 
       .hero-tag.outline {
         background: transparent;
-        color: var(--fg2);
-        border: 1px solid var(--edge);
+        color: var(--fg-quiet);
+        border: 1px solid rgba(255,255,255,0.06);
       }
 
       /* Right: photo panel */
@@ -158,23 +170,34 @@
       .hero-photo-box {
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.3);
+        background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.18));
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 10px;
         cursor: pointer;
-        border-left: 3px solid rgba(255, 255, 255, 0.08);
+        border-left: 3px solid rgba(255, 255, 255, 0.04);
         min-height: 300px;
-        overflow: hidden;
+        overflow: visible;
+        padding: 20px;
+        border-radius: 16px;
       }
 
       .hero-photo-box img {
-        width: 100%;
-        height: 100%;
+        width: 240px;
+        height: 320px;
         object-fit: cover;
         display: block;
+        border-radius: 12px;
+        border: 6px solid rgba(255,255,255,0.03);
+        box-shadow: 0 18px 40px rgba(0,0,0,0.6), 0 0 0 6px rgba(31,182,168,0.06);
+        transform: rotate(-2deg);
+        transition: transform .28s ease, box-shadow .28s ease;
+      }
+
+      .hero-photo-box:hover img {
+        transform: rotate(0) translateY(-4px);
+        box-shadow: 0 28px 60px rgba(0,0,0,0.7), 0 0 0 8px rgba(255,107,53,0.06);
       }
 
       .upload-icon {
@@ -194,19 +217,20 @@
 
       /* ── NAV STRIP ──────────────────────────────────────────────────────────── */
       .nav-strip {
-        background: var(--orange);
+        background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+        border-top: 2px solid rgba(255,255,255,0.02);
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 0 52px;
-        height: 44px;
+        height: 48px;
       }
 
       .nav-programme {
         font-family: "Bebas Neue", sans-serif;
         font-size: 18px;
         letter-spacing: 3px;
-        color: var(--black);
+        color: var(--fg);
       }
 
       .nav-links {
@@ -221,26 +245,27 @@
         font-weight: 700;
         letter-spacing: 2px;
         text-transform: uppercase;
-        color: rgba(0, 0, 0, 0.65);
+        color: var(--fg-quiet);
         text-decoration: none;
+        transition: color .18s ease;
       }
 
       .nav-link:hover {
-        color: var(--black);
+        color: var(--accent);
       }
 
       /* ── BODY ───────────────────────────────────────────────────────────────── */
       .body-wrap {
         max-width: 960px;
         margin: 0 auto;
-        background: var(--dark);
+        background: linear-gradient(180deg, rgba(255,255,255,0.01), var(--panel));
       }
 
       /* ── SECTION ────────────────────────────────────────────────────────────── */
       .section {
         display: grid;
         grid-template-columns: 220px 1fr;
-        border-bottom: 1px solid var(--edge);
+        border-bottom: 1px solid rgba(255,255,255,0.04);
       }
 
       .section:last-child {
@@ -249,13 +274,13 @@
 
       /* Left col: number + label */
       .sec-left {
-        background: var(--black);
+        background: linear-gradient(180deg, var(--panel), #0b0c0d);
         padding: 36px 28px 36px 52px;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         gap: 6px;
-        border-right: 1px solid var(--edge);
+        border-right: 1px solid rgba(255,255,255,0.03);
         position: relative;
       }
 
@@ -266,14 +291,14 @@
         top: 0;
         left: 52px;
         right: 0;
-        height: 2px;
-        background: var(--orange);
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent-2), var(--accent));
       }
 
       .sec-num {
         font-family: "Bebas Neue", sans-serif;
         font-size: 48px;
-        color: var(--edge);
+        color: rgba(255,255,255,0.06);
         line-height: 1;
         letter-spacing: 1px;
       }
@@ -284,7 +309,7 @@
         font-weight: 700;
         letter-spacing: 3px;
         text-transform: uppercase;
-        color: var(--orange);
+        color: var(--accent);
       }
 
       /* Right col: content */
@@ -294,9 +319,9 @@
 
       .sec-heading {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 36px;
-        color: var(--white);
-        letter-spacing: 2px;
+        font-size: 34px;
+        color: var(--fg);
+        letter-spacing: 1.6px;
         margin-bottom: 8px;
         line-height: 1;
       }
@@ -325,11 +350,13 @@
       }
 
       .stat-card {
-        background: var(--mid);
+        background: linear-gradient(180deg, rgba(255,255,255,0.01), var(--card));
+        border-radius: 8px;
         padding: 16px 18px;
         display: flex;
         flex-direction: column;
         gap: 4px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.6);
       }
 
       .stat-status {
@@ -341,10 +368,10 @@
       }
 
       .stat-status.known {
-        color: var(--orange);
+        color: var(--accent);
       }
       .stat-status.learning {
-        color: var(--fg3);
+        color: var(--accent-2);
       }
 
       .stat-name {
@@ -379,8 +406,8 @@
 
       .skill-num {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 32px;
-        color: var(--orange);
+        font-size: 30px;
+        color: var(--accent);
         line-height: 1;
       }
 
@@ -394,14 +421,14 @@
 
       /* ── FOOTER ─────────────────────────────────────────────────────────────── */
       .footer {
-        background: var(--black);
+        background: linear-gradient(180deg, rgba(255,255,255,0.01), var(--panel));
         padding: 18px 52px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         flex-wrap: wrap;
         gap: 10px;
-        border-top: 2px solid var(--orange);
+        border-top: 2px solid rgba(255,255,255,0.03);
         max-width: 960px;
         margin: 0 auto;
       }
@@ -502,7 +529,7 @@
             role="img"
             aria-label="Profile photo — replace with your own"
           >
-            <img src="../images/passport_photo.jpeg" alt="Photo of Glen Sikuku" />
+            <img src="../images/glen_photo.jpeg" alt="Photo of Glen Sikuku" />
 
             <!-- <svg class="upload-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
           <span class="upload-hint">place your<br>photo here</span> -->
@@ -706,7 +733,8 @@
           <p class="sec-prompt">
             Who are the mentors, peers, or lecturers who have poured into you?
           </p>
-          <p class="sec-answer">[Write your answer here]</p>
+          <p class="sec-answer">I am grateful to the lecturers, mentors, classmates, and teammates who challenged me to think more critically and push beyond my comfort zone. 
+            Their guidance, feedback, and support helped shape both my technical growth and my approach to collaboration, leadership, and continuous improvement.</p>
         </div>
       </div>
     </main>
