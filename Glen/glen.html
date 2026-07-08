@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Me — Glen Sikuku</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Barlow:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        /* Core palette */
+        --black: #050506;
+        --dark: #0f1416;
+        --mid: #1e2225;
+        --edge: #2a2f33;
+
+        /* Primary accent (warm coral) and secondary (teal) */
+        --accent: #ff6b35;
+        --accent-2: #1fb6a8;
+
+        /* Text / neutral */
+        --fg: #f6f5f2;
+        --fg-quiet: #cfc9c4;
+        --muted: #8f8782;
+        --white: #ffffff;
+
+        /* Surface */
+        --card: #121417;
+        --panel: #0b0d0e;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Barlow", system-ui, sans-serif;
+        background: #080808;
+        color: var(--fg);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── HERO — full-bleed dark panel ──────────────────────────────────────── */
+      .hero {
+        background: linear-gradient(180deg, var(--dark), #07090a 60%);
+        position: relative;
+        overflow: hidden;
+        padding: 0;
+      }
+
+      /* Diagonal orange slash — the signature element */
+      .hero-slash {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 44%;
+        height: 100%;
+        background: linear-gradient(135deg, var(--accent-2), var(--accent));
+        clip-path: polygon(16% 0%, 100% 0%, 100% 100%, 0% 100%);
+        z-index: 0;
+        opacity: 0.96;
+      }
+
+      /* Noise texture on slash */
+      .hero-slash::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 4px,
+          rgba(0, 0, 0, 0.08) 4px,
+          rgba(0, 0, 0, 0.08) 5px
+        );
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        align-items: stretch;
+        max-width: 960px;
+        margin: 0 auto;
+        min-height: 420px;
+      }
+
+      /* Left: identity */
+      .hero-identity {
+        padding: 56px 48px 48px 52px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 0;
+      }
+
+      .hero-number {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 13px;
+        letter-spacing: 5px;
+        color: var(--accent-2);
+        margin-bottom: 6px;
+        opacity: 0.95;
+      }
+
+      .hero-name {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(56px, 8.5vw, 96px);
+        color: var(--fg);
+        line-height: 0.92;
+        letter-spacing: 1.6px;
+        margin-bottom: 14px;
+        text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+      }
+
+      .hero-role {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--fg-quiet);
+        margin-bottom: 20px;
+      }
+
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .hero-tag {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--panel);
+        background: var(--fg);
+        padding: 6px 14px;
+        border-radius: 18px;
+      }
+
+      .hero-tag.outline {
+        background: transparent;
+        color: var(--fg-quiet);
+        border: 1px solid rgba(255,255,255,0.06);
+      }
+
+      /* Right: photo panel */
+      .hero-photo-panel {
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 0;
+      }
+
+      .hero-photo-box {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.18));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        cursor: pointer;
+        border-left: 3px solid rgba(255, 255, 255, 0.04);
+        min-height: 300px;
+        overflow: visible;
+        padding: 20px;
+        border-radius: 16px;
+      }
+
+      .hero-photo-box img {
+        width: 240px;
+        height: 320px;
+        object-fit: cover;
+        display: block;
+        border-radius: 12px;
+        border: 6px solid rgba(255,255,255,0.03);
+        box-shadow: 0 18px 40px rgba(0,0,0,0.6), 0 0 0 6px rgba(31,182,168,0.06);
+        transform: rotate(-2deg);
+        transition: transform .28s ease, box-shadow .28s ease;
+      }
+
+      .hero-photo-box:hover img {
+        transform: rotate(0) translateY(-4px);
+        box-shadow: 0 28px 60px rgba(0,0,0,0.7), 0 0 0 8px rgba(255,107,53,0.06);
+      }
+
+      .upload-icon {
+        opacity: 0.2;
+      }
+
+      .upload-hint {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.25);
+        text-align: center;
+        line-height: 1.6;
+      }
+
+      /* ── NAV STRIP ──────────────────────────────────────────────────────────── */
+      .nav-strip {
+        background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+        border-top: 2px solid rgba(255,255,255,0.02);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 52px;
+        height: 48px;
+      }
+
+      .nav-programme {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 18px;
+        letter-spacing: 3px;
+        color: var(--fg);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+      }
+
+      .nav-link {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--fg-quiet);
+        text-decoration: none;
+        transition: color .18s ease;
+      }
+
+      .nav-link:hover {
+        color: var(--accent);
+      }
+
+      /* ── BODY ───────────────────────────────────────────────────────────────── */
+      .body-wrap {
+        max-width: 960px;
+        margin: 0 auto;
+        background: linear-gradient(180deg, rgba(255,255,255,0.01), var(--panel));
+      }
+
+      /* ── SECTION ────────────────────────────────────────────────────────────── */
+      .section {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        border-bottom: 1px solid rgba(255,255,255,0.04);
+      }
+
+      .section:last-child {
+        border-bottom: none;
+      }
+
+      /* Left col: number + label */
+      .sec-left {
+        background: linear-gradient(180deg, var(--panel), #0b0c0d);
+        padding: 36px 28px 36px 52px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 6px;
+        border-right: 1px solid rgba(255,255,255,0.03);
+        position: relative;
+      }
+
+      /* Orange top accent bar on each section */
+      .sec-left::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 52px;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent-2), var(--accent));
+      }
+
+      .sec-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 48px;
+        color: rgba(255,255,255,0.06);
+        line-height: 1;
+        letter-spacing: 1px;
+      }
+
+      .sec-label {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      /* Right col: content */
+      .sec-right {
+        padding: 36px 52px 36px 36px;
+      }
+
+      .sec-heading {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 34px;
+        color: var(--fg);
+        letter-spacing: 1.6px;
+        margin-bottom: 8px;
+        line-height: 1;
+      }
+
+      .sec-prompt {
+        font-size: 13px;
+        font-weight: 300;
+        color: var(--fg3);
+        font-style: italic;
+        margin-bottom: 14px;
+        line-height: 1.6;
+      }
+
+      .sec-answer {
+        font-size: 17px;
+        font-weight: 300;
+        color: var(--fg2);
+        line-height: 1.8;
+      }
+
+      /* ── TECH STACK — stat cards ────────────────────────────────────────────── */
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 2px;
+      }
+
+      .stat-card {
+        background: linear-gradient(180deg, rgba(255,255,255,0.01), var(--card));
+        border-radius: 8px;
+        padding: 16px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+      }
+
+      .stat-status {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      .stat-status.known {
+        color: var(--accent);
+      }
+      .stat-status.learning {
+        color: var(--accent-2);
+      }
+
+      .stat-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        color: var(--fg);
+        line-height: 1.1;
+      }
+
+      /* ── SKILLS — numbered list ─────────────────────────────────────────────── */
+      .skills-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .skill-item {
+        display: grid;
+        grid-template-columns: 48px 1fr;
+        gap: 16px;
+        align-items: start;
+      }
+
+      .skill-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 30px;
+        color: var(--accent);
+        line-height: 1;
+      }
+
+      .skill-text {
+        font-size: 17px;
+        font-weight: 300;
+        color: var(--fg2);
+        line-height: 1.65;
+        padding-top: 6px;
+      }
+
+      /* ── FOOTER ─────────────────────────────────────────────────────────────── */
+      .footer {
+        background: linear-gradient(180deg, rgba(255,255,255,0.01), var(--panel));
+        padding: 18px 52px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+        border-top: 2px solid rgba(255,255,255,0.03);
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      .footer-copy {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--fg3);
+      }
+
+      .footer-back {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--orange);
+        text-decoration: none;
+      }
+
+      .footer-back:hover {
+        color: var(--white);
+      }
+
+      @media (max-width: 680px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+        }
+        .hero-slash {
+          width: 100%;
+          clip-path: none;
+          height: 4px;
+          top: auto;
+          bottom: 0;
+        }
+        .hero-photo-panel {
+          display: none;
+        }
+        .hero-identity {
+          padding: 40px 24px 36px;
+        }
+        .nav-strip {
+          padding: 0 24px;
+        }
+        .section {
+          grid-template-columns: 1fr;
+        }
+        .sec-left {
+          padding: 20px 24px 12px;
+          flex-direction: row;
+          align-items: center;
+          gap: 12px;
+        }
+        .sec-left::before {
+          left: 24px;
+        }
+        .sec-num {
+          font-size: 32px;
+        }
+        .sec-right {
+          padding: 20px 24px 28px;
+        }
+        .footer {
+          padding: 16px 24px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── HERO ──────────────────────────────────────────────────────────────── -->
+    <header class="hero">
+      <div class="hero-slash" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <div class="hero-identity">
+          <p class="hero-number">ICS 4 · CAPSTONE 2026</p>
+          <h1 class="hero-name"><br />Glen Sikuku</h1>
+          <p class="hero-role">Software Developer</p>
+          <div class="hero-tags">
+            <span class="hero-tag">Nairobi</span>
+            <span class="hero-tag">BSc IT</span>
+            <span class="hero-tag outline">Open to work</span>
+            <span class="hero-tag outline">Class of 2027</span>
+          </div>
+        </div>
+
+        <div class="hero-photo-panel">
+          <div
+            class="hero-photo-box"
+            role="img"
+            aria-label="Profile photo of Glen Sikuku"
+          >
+            <img src="../images/glen_photo.jpeg" alt="Photo of Glen Sikuku" />
+
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ── NAV STRIP ─────────────────────────────────────────────────────────── -->
+    <nav class="nav-strip">
+      <span class="nav-programme">Strathmore University</span>
+      <div class="nav-links">
+        <a
+          href="https://www.linkedin.com/in/glen-sikuku-0a9b922b3/"
+          target="_blank"
+          rel="noopener"
+          class="nav-link"
+          >LinkedIn ↗</a
+        >
+        <a
+          href="https://github.com/GlenSikuku9"
+          target="_blank"
+          rel="noopener"
+          class="nav-link"
+          >GitHub ↗</a
+        >
+      </div>
+    </nav>
+
+    <!-- ── SECTIONS ──────────────────────────────────────────────────────────── -->
+    <main class="body-wrap">
+      <!-- Mission -->
+      <div class="section">
+        <div class="sec-left">
+          <span class="sec-num">01</span>
+          <span class="sec-label">Mission</span>
+        </div>
+        <div class="sec-right">
+          <h2 class="sec-heading">My Coding Mission</h2>
+          <p class="sec-prompt">
+            Building practical systems that improve how people and organisations
+            work.
+          </p>
+          <p class="sec-answer">
+            I want to use technology to solve meaningful business and
+            operational challenges that improve how people and organisations
+            work. I am particularly interested in building scalable and
+            practical solutions that combine strong technical execution with
+            real-world impact. Long term, I aspire to contribute to creating
+            systems that drive growth, improve decision-making, and create value
+            at scale.
+          </p>
+        </div>
+      </div>
+
+      <!-- Tech Stack -->
+      <div class="section">
+        <div class="sec-left">
+          <span class="sec-num">02</span>
+          <span class="sec-label">Stack</span>
+        </div>
+        <div class="sec-right">
+          <h2 class="sec-heading">My Tech Stack</h2>
+          <p class="sec-prompt">
+            Technologies I use confidently today, plus the areas I am growing
+            into next.
+          </p>
+          <div class="stat-grid">
+            <div class="stat-card">
+              <span class="stat-status known">● Proficient</span>
+              <span class="stat-name">Python</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-status known">● Proficient</span>
+              <span class="stat-name">HTML &amp; CSS</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-status known">● Proficient</span>
+              <span class="stat-name">JavaScript</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-status known">● Proficient</span>
+              <span class="stat-name">React.js</span>
+            </div>
+
+            <div class="stat-card">
+              <span class="stat-status learning">▲ Learning</span>
+              <span class="stat-name">Elixir</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-status learning">▲ Learning</span>
+              <span class="stat-name">System Design</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Passions -->
+      <div class="section">
+        <div class="sec-left">
+          <span class="sec-num">03</span>
+          <span class="sec-label">Beyond Code</span>
+        </div>
+        <div class="sec-right">
+          <h2 class="sec-heading">My Passions</h2>
+          <p class="sec-prompt">
+            Interests that keep me learning, thinking and exploring beyond
+            code.
+          </p>
+          <p class="sec-answer">
+            Outside technology, I enjoy following football, exploring business
+            and market trends, and learning about how technology shapes
+            industries and creates economic opportunities. I also enjoy
+            exploring ideas around entrepreneurship, innovation, and growth.
+          </p>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="section">
+        <div class="sec-left">
+          <span class="sec-num">04</span>
+          <span class="sec-label">Growth</span>
+        </div>
+        <div class="sec-right">
+          <h2 class="sec-heading">Skills Acquired</h2>
+          <p class="sec-prompt">
+            Professional strengths developed through coursework, projects and
+            teamwork.
+          </p>
+          <ul class="skills-list">
+            <li class="skill-item">
+              <span class="skill-num">01</span>
+              <span class="skill-text">Structured Problem Solving</span>
+            </li>
+            <li class="skill-item">
+              <span class="skill-num">02</span>
+              <span class="skill-text"
+                >Collaborating under pressure in a team and Leadership</span
+              >
+            </li>
+            <li class="skill-item">
+              <span class="skill-num">03</span>
+              <span class="skill-text">Adaptability & Continuous Learning</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Energy -->
+      <div class="section">
+        <div class="sec-left">
+          <span class="sec-num">05</span>
+          <span class="sec-label">Energy</span>
+        </div>
+        <div class="sec-right">
+          <h2 class="sec-heading">Energy &amp; Engagement</h2>
+          <p class="sec-prompt">
+            The work that feels most energising is practical, creative and
+            useful.
+          </p>
+          <p class="sec-answer">
+            The projects that gave me the most energy were building full-stack
+            applications and working on AI-powered solutions because they
+            allowed me to combine technical execution with problem solving and
+            creativity.
+          </p>
+        </div>
+      </div>
+
+      <!-- Looking Back -->
+      <div class="section">
+        <div class="sec-left">
+          <span class="sec-num">06</span>
+          <span class="sec-label">Reflection</span>
+        </div>
+        <div class="sec-right">
+          <h2 class="sec-heading">Looking Back</h2>
+          <p class="sec-prompt">
+            A reflection on consistency, depth and building real projects
+            earlier.
+          </p>
+          <p class="sec-answer">
+            If I could give advice to my first-year self, I would focus less on
+            trying to learn everything and more on building depth, consistency,
+            and real projects. Growth compounds over time, and meaningful
+            progress comes from disciplined effort, curiosity, and taking
+            opportunities even before feeling fully prepared.
+          </p>
+        </div>
+      </div>
+
+      <!-- Circle of Influence -->
+      <div class="section">
+        <div class="sec-left">
+          <span class="sec-num">07</span>
+          <span class="sec-label">Gratitude</span>
+        </div>
+        <div class="sec-right">
+          <h2 class="sec-heading">Circle of Influence</h2>
+          <p class="sec-prompt">
+            Gratitude for the people who shaped my growth and challenged my
+            thinking.
+          </p>
+          <p class="sec-answer">I am grateful to the lecturers, mentors, classmates, and teammates who challenged me to think more critically and push beyond my comfort zone. 
+            Their guidance, feedback, and support helped shape both my technical growth and my approach to collaboration, leadership, and continuous improvement.</p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <span class="footer-copy"
+        >ICS 4 Capstone · Strathmore University · Nairobi 2026</span
+      >
+      <a href="../index.html" class="footer-back">← Back to company page</a>
+    </footer>
+  </body>
+</html>
